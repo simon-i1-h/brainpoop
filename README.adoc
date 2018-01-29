@@ -1,0 +1,12 @@
+== Mushroom programming language
+Mushroom is programming language like link:https://esolangs.org/wiki/Brainfuck[].
+
+=== Build
+`cc -o mushroomi mushroomi.c`
+
+=== Run
+`./mushroomi _source.mushroom_`
+
+=== 方針
+* Mushroomインタプリタ内でIOエラーは起きうる
+* 受理するMushroomプログラムはバグを含まない
