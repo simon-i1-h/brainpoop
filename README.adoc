@@ -1,20 +1,20 @@
-== Mushroom programming language
+= Mushroom programming language
 Mushroom is programming language like link:https://esolangs.org/wiki/Brainfuck[].
 
-=== Build
+== Build
 `cc -o mushroomi mushroomi.c`
 
-=== Run
+== Run
 `./mushroomi _source.mushroom_`
 
-=== Example
+== Example
 
-==== cat
+=== cat
 ----
 ; https://en.wikipedia.org/wiki/Cat_(Unix)
 +[>,.<]
 ----
 
-=== 方針
+== 方針
 * Mushroomインタプリタ内でIOエラーは起きうる
 * 受理するMushroomプログラムはバグを含まない
