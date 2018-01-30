@@ -1,6 +1,6 @@
 = Mushroom programming language
 
-Mushroom is programming language like link:https://esolangs.org/wiki/Brainfuck[].
+Mushroom is a programming language like link:https://esolangs.org/wiki/Brainfuck[].
 
 == Build
 
