@@ -45,7 +45,10 @@ int main(int argc, char *argv[]) {
                     }
             break;
         case ',':
-            if((buf = getchar()) == EOF)
+            buf = getchar();
+            if(ferror(stdin) != 0)
+                return 1;
+            if(feof(stdin) != 0)
                 goto jump;
             tape[head] = buf;
             break;
