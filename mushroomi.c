@@ -1,4 +1,3 @@
-#include <errno.h>
 #include <stdio.h>
 #define SIZE 65536
 
@@ -18,9 +17,8 @@ int main(int argc, char *argv[]) {
     if((f = fopen(argv[1], "rb")) == NULL)
         return 1;
 
-    errno = 0;
     len = fread(prog, 1, SIZE, f);
-    if(errno != 0)
+    if(ferror(f) != 0)
         return 1;
 
     for(; ip < len; ++ip) {
