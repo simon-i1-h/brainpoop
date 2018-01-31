@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
         return 1;
 
     len = fread(prog, 1, SIZE, f);
-    if(ferror(f) != 0 || feof(f) == 0)
+    if(ferror(f) != 0 || feof(f) == 0 || fclose(f) != 0)
         return 1;
 
     for(; ip < len; ++ip) {
@@ -60,9 +60,6 @@ int main(int argc, char *argv[]) {
         default: break;
         }
     }
-
-    if(fclose(f) != 0)
-        return 1;
 
     if(ferror(stdout) != 0)
         return 1;
