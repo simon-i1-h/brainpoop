@@ -55,14 +55,13 @@ int main(int argc, char *argv[]) {
         case '.':
             putchar(tape[head]);
             fflush(stdout);
+            if(ferror(stdout) != 0)
+                return 1;
             break;
         case ';': for(; prog[ip] != '\n'; ++ip); break;
         default: break;
         }
     }
-
-    if(ferror(stdout) != 0)
-        return 1;
 
     return 0;
 }
