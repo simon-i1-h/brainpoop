@@ -3,7 +3,7 @@
 #define SIZE 65536
 
 int main(int argc, char *argv[]) {
-    unsigned char prog[SIZE] = {0};
+    unsigned char prog[SIZE];
     unsigned char tape[SIZE] = {0};
     size_t ip = 0;
     size_t head = 0;
