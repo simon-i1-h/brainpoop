@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define SIZE 65536
+#define SIZE 65535
 
 int main(int argc, char *argv[]) {
     unsigned char prog[SIZE];
