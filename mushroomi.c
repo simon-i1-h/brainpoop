@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
     if(ferror(f) != 0 || feof(f) == 0 || fclose(f) != 0)
         return 1;
 
-    for(; ip < len; ++ip) {
+    for(; ip < len; ++ip)
         switch(prog[ip]) {
         case '>': ++head; break;
         case '<': --head; break;
@@ -61,7 +61,6 @@ int main(int argc, char *argv[]) {
         case ';': for(; prog[ip] != '\n'; ++ip); break;
         default: break;
         }
-    }
 
     return 0;
 }
