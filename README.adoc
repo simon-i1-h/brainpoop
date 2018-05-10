@@ -18,8 +18,3 @@ Mushroom is a programming language like link:https://esolangs.org/wiki/Brainfuck
 ; https://en.wikipedia.org/wiki/Cat_(Unix)
 +[>,.<]
 ----
-
-== 方針
-
-* Mushroomインタプリタ内でIOエラーは起きうる
-* 受理するMushroomプログラムはバグを含まない
