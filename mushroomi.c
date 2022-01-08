@@ -84,9 +84,8 @@ int main(int argc, char **argv) {
       ip++;
       break;
     case ';':
-      for (;;)
-        if (prog[++ip] == '\n')
-          break;
+      while (prog[++ip] != '\n')
+        ;
       ip++;
       break;
     case ' ':
