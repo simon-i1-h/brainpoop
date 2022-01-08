@@ -1,17 +1,17 @@
-# Mushroom programming language
+# Brainpoop programming language
 
-Mushroom is a programming language like Brainfuck.
+Brainpoop is a programming language like Brainfuck.
 
 ## Build
 
 ```
-cc -o mushroomi mushroomi.c
+cc -o brainpoopi brainpoopi.c
 ```
 
 ## Run
 
 ```
-./mushroomi _source.mushroom_
+./brainpoopi _source.bp_
 ```
 
 ## Example
