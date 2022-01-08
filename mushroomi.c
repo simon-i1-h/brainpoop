@@ -2,14 +2,15 @@
 #define SIZE 65535
 
 int main(int argc, char **argv) {
+  FILE *f;
+  size_t len;
+
   unsigned char prog[SIZE];
   unsigned char tape[SIZE] = {0};
   size_t ip = 0;
   size_t head = 0;
-  FILE *f;
-  size_t len;
-  size_t depth;
   int c;
+  size_t depth;
 
   if (argc < 2)
     return 1;
