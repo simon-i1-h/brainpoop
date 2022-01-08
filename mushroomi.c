@@ -40,14 +40,8 @@ int main(int argc, char **argv) {
         jump:
           ++ip;
           for (depth = 0; depth > 0 || prog[ip] != ']'; ++ip) {
-            switch (prog[ip]) {
-              case '[':
-                ++depth;
-                break;
-              case ']':
-                --depth;
-                break;
-            }
+            depth += prog[ip] == '[';
+            depth -= prog[ip] == ']';
           }
         }
         break;
@@ -55,14 +49,8 @@ int main(int argc, char **argv) {
         if (tape[head] != 0) {
           --ip;
           for (depth = 0; depth > 0 || prog[ip] != '['; --ip) {
-            switch (prog[ip]) {
-              case '[':
-                --depth;
-                break;
-              case ']':
-                ++depth;
-                break;
-            }
+            depth -= prog[ip] == '[';
+            depth += prog[ip] == ']';
           }
         }
         break;
