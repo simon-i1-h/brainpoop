@@ -75,8 +75,8 @@ int main(int argc, char **argv) {
           return 1;
         break;
       case ';':
-        for (; prog[ip] != '\n'; ++ip)
-          ;
+        while (prog[ip] != '\n')
+          ++ip;
         break;
       default:
         break;
