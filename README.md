@@ -1,6 +1,6 @@
 # Brainpoop programming language
 
-Brainpoop is a programming language like Brainfuck.
+Brainpoop is a programming language like brainfuck.
 
 ## Build
 
@@ -11,7 +11,7 @@ cc -o brainpoopi brainpoopi.c
 ## Run
 
 ```
-./brainpoopi _source.bp_
+./brainpoopi source.bp
 ```
 
 ## Example
