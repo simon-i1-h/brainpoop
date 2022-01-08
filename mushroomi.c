@@ -38,7 +38,8 @@ int main(int argc, char **argv) {
       case '[':
         if (tape[head] == 0) {
         jump:
-          for (depth = 0, ++ip; depth > 0 || prog[ip] != ']'; ++ip) {
+          ++ip;
+          for (depth = 0; depth > 0 || prog[ip] != ']'; ++ip) {
             switch (prog[ip]) {
               case '[':
                 ++depth;
@@ -52,7 +53,8 @@ int main(int argc, char **argv) {
         break;
       case ']':
         if (tape[head] != 0) {
-          for (depth = 0, --ip; depth > 0 || prog[ip] != '['; --ip) {
+          --ip;
+          for (depth = 0; depth > 0 || prog[ip] != '['; --ip) {
             switch (prog[ip]) {
               case '[':
                 --depth;
