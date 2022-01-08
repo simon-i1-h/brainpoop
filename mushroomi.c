@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define SIZE 65535
 
-int main(int argc, char *argv[]) {
+int main(int argc, char **argv) {
   unsigned char prog[SIZE];
   unsigned char tape[SIZE] = {0};
   size_t ip = 0;
@@ -21,7 +21,8 @@ int main(int argc, char *argv[]) {
   if (ferror(f) != 0 || feof(f) == 0 || fclose(f) != 0)
     return 1;
 
-  for (; ip < len; ++ip) switch (prog[ip]) {
+  for (; ip < len; ++ip) {
+    switch (prog[ip]) {
       case '>':
         ++head;
         break;
@@ -80,6 +81,7 @@ int main(int argc, char *argv[]) {
       default:
         break;
     }
+  }
 
   return 0;
 }
