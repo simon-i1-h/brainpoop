@@ -6,9 +6,11 @@ int main(int argc, char **argv) {
   size_t len;
 
   unsigned char prog[SIZE];
-  unsigned char mem[SIZE] = {0};
   size_t ip = 0;
+
+  unsigned char mem[SIZE] = {0};
   size_t addr = 0;
+
   int c;
   size_t depth;
 
