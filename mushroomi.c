@@ -36,9 +36,9 @@ int main(int argc, char **argv) {
         --tape[head];
         break;
       case '[':
-        if (tape[head] == 0)
+        if (tape[head] == 0) {
         jump:
-          for (depth = 0, ++ip; depth > 0 || prog[ip] != ']'; ++ip)
+          for (depth = 0, ++ip; depth > 0 || prog[ip] != ']'; ++ip) {
             switch (prog[ip]) {
               case '[':
                 ++depth;
@@ -47,10 +47,12 @@ int main(int argc, char **argv) {
                 --depth;
                 break;
             }
+          }
+        }
         break;
       case ']':
-        if (tape[head] != 0)
-          for (depth = 0, --ip; depth > 0 || prog[ip] != '['; --ip)
+        if (tape[head] != 0) {
+          for (depth = 0, --ip; depth > 0 || prog[ip] != '['; --ip) {
             switch (prog[ip]) {
               case '[':
                 --depth;
@@ -59,6 +61,8 @@ int main(int argc, char **argv) {
                 ++depth;
                 break;
             }
+          }
+        }
         break;
       case ',':
         buf = getchar();
