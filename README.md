@@ -5,13 +5,13 @@ Brainpoop is a programming language like brainfuck.
 ## Build
 
 ```
-cc -o brainpoopi brainpoopi.c
+cc -o brainpoop brainpoop.c
 ```
 
 ## Run
 
 ```
-./brainpoopi source.bp
+./brainpoop source.bp
 ```
 
 ## Example
