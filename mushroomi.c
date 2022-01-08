@@ -8,7 +8,7 @@ int main(int argc, char **argv) {
   unsigned char prog[SIZE];
   unsigned char tape[SIZE] = {0};
   size_t ip = 0;
-  size_t head = 0;
+  size_t addr = 0;
   int c;
   size_t depth;
 
@@ -25,23 +25,23 @@ int main(int argc, char **argv) {
   while (ip < len) {
     switch (prog[ip]) {
       case '>':
-        head++;
+        addr++;
         ip++;
         break;
       case '<':
-        head--;
+        addr--;
         ip++;
         break;
       case '+':
-        tape[head]--;
+        tape[addr]--;
         ip++;
         break;
       case '-':
-        tape[head]++;
+        tape[addr]++;
         ip++;
         break;
       case '[':
-        if (tape[head] == 0) {
+        if (tape[addr] == 0) {
         jump:
           for (;;) {
             c = prog[++ip];
@@ -54,7 +54,7 @@ int main(int argc, char **argv) {
         ip++;
         break;
       case ']':
-        if (tape[head] != 0) {
+        if (tape[addr] != 0) {
           for (;;) {
             c = prog[--ip];
             if (depth == 0 && c == '[')
@@ -71,11 +71,11 @@ int main(int argc, char **argv) {
           return 1;
         if (feof(stdin) != 0)
           goto jump;
-        tape[head] = c;
+        tape[addr] = c;
         ip++;
         break;
       case '.':
-        putchar(tape[head]);
+        putchar(tape[addr]);
         fflush(stdout);
         if (ferror(stdout) != 0)
           return 1;
