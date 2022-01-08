@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
         jump:
           for (;;) {
             c = prog[++ip];
-            if (depth == 0 && c == ']')
+            if (c == ']' && depth == 0)
               break;
             depth += c == '[';
             depth -= c == ']';
@@ -59,7 +59,7 @@ int main(int argc, char **argv) {
         if (mem[addr] != 0) {
           for (;;) {
             c = prog[--ip];
-            if (depth == 0 && c == '[')
+            if (c == '[' && depth == 0)
               break;
             depth -= c == '[';
             depth += c == ']';
