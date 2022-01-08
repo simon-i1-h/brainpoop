@@ -22,36 +22,38 @@ int main(int argc, char **argv) {
     return 1;
 
   while (ip < len) {
-    c = prog[ip++];
-
-    switch (c) {
+    switch (prog[ip]) {
       case '>':
         ++head;
+        ++ip;
         break;
       case '<':
         --head;
+        ++ip;
         break;
       case '+':
         ++tape[head];
+        ++ip;
         break;
       case '-':
         --tape[head];
+        ++ip;
         break;
       case '[':
         if (tape[head] == 0) {
         jump:
           for (;;) {
-            c = prog[ip++];
+            c = prog[++ip];
             if (depth == 0 && c == ']')
               break;
             depth += c == '[';
             depth -= c == ']';
           }
         }
+        ip++;
         break;
       case ']':
         if (tape[head] != 0) {
-          --ip;
           for (;;) {
             c = prog[--ip];
             if (depth == 0 && c == '[')
@@ -60,6 +62,7 @@ int main(int argc, char **argv) {
             depth += c == ']';
           }
         }
+        ip++;
         break;
       case ',':
         c = getchar();
@@ -68,23 +71,27 @@ int main(int argc, char **argv) {
         if (feof(stdin) != 0)
           goto jump;
         tape[head] = c;
+        ++ip;
         break;
       case '.':
         putchar(tape[head]);
         fflush(stdout);
         if (ferror(stdout) != 0)
           return 1;
+        ++ip;
         break;
       case ';':
         for (;;) {
-          if (prog[ip++] == '\n')
+          if (prog[++ip] == '\n')
             break;
         }
+        ++ip;
         break;
       case ' ':
       case '\t':
       case '\r':
       case '\n':
+        ++ip;
         break;
       default:
         return 1;
