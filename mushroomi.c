@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
         break;
       case ';':
         while (prog[ip] != '\n')
-          ++ip;
+          ip++;
         break;
       case ' ':
       case '\t':
