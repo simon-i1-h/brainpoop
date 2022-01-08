@@ -21,8 +21,10 @@ int main(int argc, char **argv) {
   if (ferror(f) != 0 || feof(f) == 0 || fclose(f) != 0)
     return 1;
 
-  for (; ip < len; ++ip) {
-    switch (prog[ip]) {
+  while (ip < len) {
+    c = prog[ip++];
+
+    switch (c) {
       case '>':
         ++head;
         break;
@@ -38,7 +40,6 @@ int main(int argc, char **argv) {
       case '[':
         if (tape[head] == 0) {
         jump:
-          ++ip;
           for (;;) {
             c = prog[ip++];
             if (depth == 0 && c == ']')
@@ -52,7 +53,7 @@ int main(int argc, char **argv) {
         if (tape[head] != 0) {
           --ip;
           for (;;) {
-            c = prog[ip--];
+            c = prog[--ip];
             if (depth == 0 && c == '[')
               break;
             depth -= c == '[';
@@ -75,8 +76,10 @@ int main(int argc, char **argv) {
           return 1;
         break;
       case ';':
-        while (prog[ip] != '\n')
-          ip++;
+        for (;;) {
+          if (prog[ip++] == '\n')
+            break;
+        }
         break;
       case ' ':
       case '\t':
