@@ -26,77 +26,77 @@ int main(int argc, char **argv) {
 
   while (ip < len) {
     switch (prog[ip]) {
-      case '>':
-        addr++;
-        ip++;
-        break;
-      case '<':
-        addr--;
-        ip++;
-        break;
-      case '+':
-        mem[addr]--;
-        ip++;
-        break;
-      case '-':
-        mem[addr]++;
-        ip++;
-        break;
-      case '[':
-        if (mem[addr] == 0) {
-        jump:
-          for (;;) {
-            c = prog[++ip];
-            if (c == ']' && depth == 0)
-              break;
-            depth += c == '[';
-            depth -= c == ']';
-          }
-        }
-        ip++;
-        break;
-      case ']':
-        if (mem[addr] != 0) {
-          for (;;) {
-            c = prog[--ip];
-            if (c == '[' && depth == 0)
-              break;
-            depth -= c == '[';
-            depth += c == ']';
-          }
-        }
-        ip++;
-        break;
-      case ',':
-        c = getchar();
-        if (ferror(stdin) != 0)
-          return 1;
-        if (feof(stdin) != 0)
-          goto jump;
-        mem[addr] = c;
-        ip++;
-        break;
-      case '.':
-        putchar(mem[addr]);
-        fflush(stdout);
-        if (ferror(stdout) != 0)
-          return 1;
-        ip++;
-        break;
-      case ';':
-        for (;;)
-          if (prog[++ip] == '\n')
+    case '>':
+      addr++;
+      ip++;
+      break;
+    case '<':
+      addr--;
+      ip++;
+      break;
+    case '+':
+      mem[addr]--;
+      ip++;
+      break;
+    case '-':
+      mem[addr]++;
+      ip++;
+      break;
+    case '[':
+      if (mem[addr] == 0) {
+      jump:
+        for (;;) {
+          c = prog[++ip];
+          if (c == ']' && depth == 0)
             break;
-        ip++;
-        break;
-      case ' ':
-      case '\t':
-      case '\r':
-      case '\n':
-        ip++;
-        break;
-      default:
+          depth += c == '[';
+          depth -= c == ']';
+        }
+      }
+      ip++;
+      break;
+    case ']':
+      if (mem[addr] != 0) {
+        for (;;) {
+          c = prog[--ip];
+          if (c == '[' && depth == 0)
+            break;
+          depth -= c == '[';
+          depth += c == ']';
+        }
+      }
+      ip++;
+      break;
+    case ',':
+      c = getchar();
+      if (ferror(stdin) != 0)
         return 1;
+      if (feof(stdin) != 0)
+        goto jump;
+      mem[addr] = c;
+      ip++;
+      break;
+    case '.':
+      putchar(mem[addr]);
+      fflush(stdout);
+      if (ferror(stdout) != 0)
+        return 1;
+      ip++;
+      break;
+    case ';':
+      for (;;)
+        if (prog[++ip] == '\n')
+          break;
+      ip++;
+      break;
+    case ' ':
+    case '\t':
+    case '\r':
+    case '\n':
+      ip++;
+      break;
+    default:
+      return 1;
     }
   }
 
