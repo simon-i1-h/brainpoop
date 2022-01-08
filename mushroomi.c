@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
   FILE *f;
   size_t len;
   size_t depth;
-  int buf;
+  int c;
 
   if (argc < 2)
     return 1;
@@ -39,28 +39,34 @@ int main(int argc, char **argv) {
         if (tape[head] == 0) {
         jump:
           ++ip;
-          for (depth = 0; depth > 0 || prog[ip] != ']'; ++ip) {
-            depth += prog[ip] == '[';
-            depth -= prog[ip] == ']';
+          for (;;) {
+            c = prog[ip++];
+            if (depth == 0 && c == ']')
+              break;
+            depth += c == '[';
+            depth -= c == ']';
           }
         }
         break;
       case ']':
         if (tape[head] != 0) {
           --ip;
-          for (depth = 0; depth > 0 || prog[ip] != '['; --ip) {
-            depth -= prog[ip] == '[';
-            depth += prog[ip] == ']';
+          for (;;) {
+            c = prog[ip--];
+            if (depth == 0 && c == '[')
+              break;
+            depth -= c == '[';
+            depth += c == ']';
           }
         }
         break;
       case ',':
-        buf = getchar();
+        c = getchar();
         if (ferror(stdin) != 0)
           return 1;
         if (feof(stdin) != 0)
           goto jump;
-        tape[head] = buf;
+        tape[head] = c;
         break;
       case '.':
         putchar(tape[head]);
