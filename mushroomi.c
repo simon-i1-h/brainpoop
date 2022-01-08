@@ -24,26 +24,27 @@ int main(int argc, char **argv) {
   while (ip < len) {
     switch (prog[ip]) {
       case '>':
-        ++head;
-        ++ip;
+        head++;
+        ip++;
         break;
       case '<':
-        --head;
-        ++ip;
+        head--;
+        ip++;
         break;
       case '+':
-        ++tape[head];
-        ++ip;
+        tape[head]--;
+        ip++;
         break;
       case '-':
-        --tape[head];
-        ++ip;
+        tape[head]++;
+        ip++;
         break;
       case '[':
         if (tape[head] == 0) {
         jump:
           for (;;) {
-            c = prog[++ip];
+            ip++;
+            c = prog[ip];
             if (depth == 0 && c == ']')
               break;
             depth += c == '[';
@@ -55,7 +56,8 @@ int main(int argc, char **argv) {
       case ']':
         if (tape[head] != 0) {
           for (;;) {
-            c = prog[--ip];
+            ip--;
+            c = prog[ip];
             if (depth == 0 && c == '[')
               break;
             depth -= c == '[';
@@ -71,27 +73,28 @@ int main(int argc, char **argv) {
         if (feof(stdin) != 0)
           goto jump;
         tape[head] = c;
-        ++ip;
+        ip++;
         break;
       case '.':
         putchar(tape[head]);
         fflush(stdout);
         if (ferror(stdout) != 0)
           return 1;
-        ++ip;
+        ip++;
         break;
       case ';':
         for (;;) {
-          if (prog[++ip] == '\n')
+          ip++;
+          if (prog[ip] == '\n')
             break;
         }
-        ++ip;
+        ip++;
         break;
       case ' ':
       case '\t':
       case '\r':
       case '\n':
-        ++ip;
+        ip++;
         break;
       default:
         return 1;
