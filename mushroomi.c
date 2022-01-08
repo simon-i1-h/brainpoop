@@ -78,8 +78,13 @@ int main(int argc, char **argv) {
         while (prog[ip] != '\n')
           ++ip;
         break;
-      default:
+      case ' ':
+      case '\t':
+      case '\r':
+      case '\n':
         break;
+      default:
+        return 1;
     }
   }
 
