@@ -19,6 +19,6 @@ cc -o brainpoop brainpoop.c
 ### cat
 
 ```
-; https://en.wikipedia.org/wiki/Cat_(Unix)
+# https://en.wikipedia.org/wiki/Cat_(Unix)
 +[>,.<]
 ```

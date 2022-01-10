@@ -83,7 +83,7 @@ int main(int argc, char **argv) {
         return 1;
       ip++;
       break;
-    case ';':
+    case '#':
       while (prog[++ip] != '\n')
         ;
       ip++;
