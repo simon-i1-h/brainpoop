@@ -33,10 +33,10 @@ int main(int argc, char **argv) {
       addr--;
       break;
     case '+':
-      mem[addr]--;
+      mem[addr]++;
       break;
     case '-':
-      mem[addr]++;
+      mem[addr]--;
       break;
     case '[':
       if (mem[addr] == 0) {
