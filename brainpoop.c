@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 #define SIZE 65536
 
 int main(int argc, char **argv) {
@@ -6,7 +7,7 @@ int main(int argc, char **argv) {
   size_t len;
 
   unsigned char prog[SIZE];
-  size_t ip = 0;
+  size_t ip;
 
   unsigned char mem[SIZE] = {0};
   size_t addr = 0;
@@ -24,7 +25,7 @@ int main(int argc, char **argv) {
   if (ferror(f) != 0 || feof(f) == 0 || fclose(f) != 0)
     return 1;
 
-  for (;ip < len; ip++) {
+  for (ip = 0; ip < len; ip++) {
     switch (prog[ip]) {
     case '>':
       addr++;
@@ -41,6 +42,7 @@ int main(int argc, char **argv) {
     case '[':
       if (mem[addr] == 0) {
       jump:
+        depth = 0;
         for (;;) {
           c = prog[++ip];
           if (c == ']' && depth == 0)
@@ -52,6 +54,7 @@ int main(int argc, char **argv) {
       break;
     case ']':
       if (mem[addr] != 0) {
+        depth = 0;
         for (;;) {
           c = prog[--ip];
           if (c == '[' && depth == 0)
