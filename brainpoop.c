@@ -24,23 +24,19 @@ int main(int argc, char **argv) {
   if (ferror(f) != 0 || feof(f) == 0 || fclose(f) != 0)
     return 1;
 
-  while (ip < len) {
+  for (;ip < len; ip++) {
     switch (prog[ip]) {
     case '>':
       addr++;
-      ip++;
       break;
     case '<':
       addr--;
-      ip++;
       break;
     case '+':
       mem[addr]--;
-      ip++;
       break;
     case '-':
       mem[addr]++;
-      ip++;
       break;
     case '[':
       if (mem[addr] == 0) {
@@ -53,7 +49,6 @@ int main(int argc, char **argv) {
           depth -= c == ']';
         }
       }
-      ip++;
       break;
     case ']':
       if (mem[addr] != 0) {
@@ -65,7 +60,6 @@ int main(int argc, char **argv) {
           depth += c == ']';
         }
       }
-      ip++;
       break;
     case ',':
       c = getchar();
@@ -74,25 +68,21 @@ int main(int argc, char **argv) {
       if (feof(stdin) != 0)
         goto jump;
       mem[addr] = c;
-      ip++;
       break;
     case '.':
       putchar(mem[addr]);
       fflush(stdout);
       if (ferror(stdout) != 0)
         return 1;
-      ip++;
       break;
     case '#':
       while (prog[++ip] != '\n')
         ;
-      ip++;
       break;
     case ' ':
     case '\t':
     case '\r':
     case '\n':
-      ip++;
       break;
     default:
       return 1;
