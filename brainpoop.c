@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define SIZE 65535
+#define SIZE 65536
 
 int main(int argc, char **argv) {
   FILE *f;
