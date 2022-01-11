@@ -77,6 +77,8 @@ int main(int argc, char **argv) {
       fflush(stdout);
       if (ferror(stdout) != 0)
         return 1;
+      if (feof(stdout) != 0)
+        goto jump;
       break;
     case '#':
       while (prog[++ip] != '\n')
