@@ -1,6 +1,6 @@
 # Brainpoop programming language
 
-Brainpoop is a programming language like brainfuck.
+Brainpoop (formerly known as Mushroom) is a programming language like brainfuck.
 
 ## Build
 
